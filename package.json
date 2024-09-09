@@ -4,7 +4,8 @@
   "description": "A platform where a business can share their events with members of the community, and community members can sign up and optionally pay to participate in the events.",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "jest",
+    "tsc": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@types/express": "^4.17.21",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
