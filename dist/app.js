@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+const express = require('express');
+const app = express();
+exports.app = app;
+// apiRouter = require('./routes/api-router.ts');
+const cors = require('cors');
+app.use(cors());
+app.use(express.json());
