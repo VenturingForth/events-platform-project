@@ -1,5 +1,51 @@
 [
     {
-        
+        "event_title": "An Evening With Patrick Rothfuss",
+        "description": "Patrick Rothfuss joins his fans to give an update on his latest book 'The Doors of Stone' and to assuage any rumours that he is no longer working on this",
+        "location": "Waterrocks HQ",
+        "start": {
+            "year": 2024,
+            "month": 10,
+            "day": 24,
+            "hour": 18,
+            "minute": 30
+        },
+        "end": {
+            "year": 2024,
+            "month": 10,
+            "day": 24,
+            "hour": 20,
+            "minute": 30
+        },
+        "organiser": "waterrocks_hq",
+        "attendees": [
+            "bookwork12", 
+            "page_turner"
+        ],
+        "price": 30
+    },
+    {
+        "event_title": "Young Writers' Workshop",
+        "description": "We need new authors so we can sell new books to a new generation, so join our free writers workshop! ",
+        "location": "City Library",
+        "start": {
+            "year": 2024,
+            "month": 11,
+            "day": 5,
+            "hour": 9,
+            "minute": 0
+        },
+        "end": {
+            "year": 2024,
+            "month": 11,
+            "day": 5,
+            "hour": 17,
+            "minute": 0
+        },
+        "organiser": "freezypop86",
+        "attendees": [
+            "bookwork12"
+        ],
+        "price": 0
     }
 ]
