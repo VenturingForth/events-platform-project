@@ -1,0 +1,22 @@
+[
+    {
+        "username": "freezypop86",
+        "bio": "Owner of Freezy Books",
+        "role": "organiser"
+    },
+    {
+        "username": "waterrocks_hq",
+        "bio": "HQ of Waterrocks, biggest booksellers in the northern quadrant",
+        "role": "organiser"
+    },
+    {
+        "username": "bookwork12",
+        "bio": "I love books of all shapes and sizes",
+        "role": "attendee"
+    },
+    {
+        "username": "page_turner",
+        "bio": "Just here to turn the pages, nothing more.",
+        "role": "attendee"
+    }
+]
