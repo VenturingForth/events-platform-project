@@ -1,5 +1,6 @@
 const format = require("pg-format");
 const { db } = require("../connection");
+import { getDate, getTime } from "../../utils/utils";
 
 enum UserRole {
     Organiser,
@@ -79,7 +80,8 @@ async function seed({
                 end_date DATE,
                 end_time TIME,
                 organiser_id REF users(users_id) NOT NULL,
-                attendees VARCHAR(30)[]
+                attendees VARCHAR(30)[],
+                price INT DEFAULT 0 NOT NULL
             )`
         )
     }
@@ -118,8 +120,46 @@ async function seed({
         const eventsQuery = format(
             `INSERT INTO events (event_title, description, start_date, start_time, end_date, end_time, organiser_id, attendees)
             VALUES %L RETURNING *;`,
-            
-        )
+            eventsData.map(
+                ({
+                    event_title,
+                    description,
+                    location,
+                    start,
+                    end,
+                    organiser,
+                    attendees,
+                    price
+                }: {
+                    event_title: string;
+                    description: string;
+                    location: string;
+                    start: string;
+                    end: string;
+                    organiser: string;
+                    attendees: string[];
+                    price: number;
+                }) => [event_title, description, location, getDate(start), getTime(start), getDate(end), getTime(end), getOrganiserId(organiser), attendees]
+            )
+        );
+
+        const result = await db.query(eventsQuery);
+        return result;
+    }
+
+    async function insertTickets(ticketsData: any){
+        const ticketsQuery = format(
+            `INSERT INTO tickets (event_id, user_id) VALUES %L RETURNING *;`,
+
+        );
+
+        const result = await db.query(ticketsQuery);
+        return result;
+    }
+
+    async function getOrganiserId(organiser: string){
+        const organiserIdQuery = `SELECT user_id FROM users WHERE username = ${organiser} RETURNING *;`;
+        return organiserIdQuery;
     }
 }
 
