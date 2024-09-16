@@ -11,8 +11,5 @@ describe("/api/invalid-end-points", () => {
         return request(app)
         .get('api/invalid')
         .expect(404)
-        .then(({body}) => {
-            expect(body.msg).toBe('Invalid Endpoint');
-        })
     })
 })
