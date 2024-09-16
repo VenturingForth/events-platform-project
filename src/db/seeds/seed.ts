@@ -11,7 +11,7 @@ interface UsersData {
         username: string;
         bio: string;
         role: UserRole;
-    }
+    }[];
 }
 
 interface EventsData {
@@ -24,14 +24,14 @@ interface EventsData {
         organiser: string,
         attendees: Array<string>,
         price: number
-    }
+    }[];
 }
 
 interface TicketsData {
     ticketsData: {
         event_id: number,
         user_id: number
-    }
+    }[];
 }
 
 async function seed({
@@ -51,9 +51,9 @@ async function seed({
     await createEvents();
     await createTickets();
 
-    await insertUsers();
-    await insertEvents();
-    await insertTickets();
+    await insertUsers(usersData);
+    await insertEvents(eventsData);
+    await insertTickets(ticketsData);
 
     async function createUsers(){
         return await db.query(
@@ -61,6 +61,7 @@ async function seed({
                 (user_id SERIAL PRIMARY KEY,
                 username VARCHAR(30) NOT NULL,
                 bio VARCHAR(150),
+                role VARCHAR (9),
                 date_created CURRENT_TIMESTAMP
             )`
         )
@@ -92,4 +93,34 @@ async function seed({
             )`
         )
     }
+
+    async function insertUsers(usersData: any){
+        const usersQuery = format(
+            `INSERT INTO users (username, bio, role) VALUES %L RETURNING *;`,
+            usersData.map(
+                ({
+                    username,
+                    bio,
+                    role
+                }: {
+                    username: string;
+                    bio: string;
+                    role: string;
+                }) => [username, bio, role]
+            )
+        );
+
+        const result = await db.query(usersQuery);
+        return result;
+    }
+
+    async function insertEvents(eventsData: any){
+        const eventsQuery = format(
+            `INSERT INTO events (event_title, description, start_date, start_time, end_date, end_time, organiser_id, attendees)
+            VALUES %L RETURNING *;`,
+            
+        )
+    }
 }
+
+module.exports = { seed };
